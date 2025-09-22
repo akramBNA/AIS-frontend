@@ -1,12 +1,3 @@
-// import { useState } from "react";
-
-// export default function Signup() {
-  
-
-//   return (
-//     <div>Signup Page</div>
-//   );
-// }
 import { useState } from "react";
 import {
   Box,
@@ -18,6 +9,7 @@ import {
   Alert,
 } from "@mui/material";
 import authService from "../../services/authentication.services";
+import DotsSpinner from "~/shared/dotsSpinner.shared";
 import { useNavigate } from "react-router-dom";
 
 export function SignUpPage() {
@@ -38,18 +30,20 @@ export function SignUpPage() {
 
     try {
       const response = await authService.signup(newUser);
-      alert(`Signup successful! Welcome ${response.data.firstName}`);
-      
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
-
-      navigate("/login");
+      if(response.success){
+          setFirstName("");
+          setLastName("");
+          setEmail("");
+          setPassword("");
+          setLoading(false);
+          alert(`Signup successful! Welcome ${response.data.firstName}`);
+          navigate("/login");
+      } else {
+        setLoading(false);
+        alert("Could not sign you up! Please try again later.")
+      }
     } catch (err: any) {
-      setError(err.message || "Signup failed. Please try again.");
-    } finally {
-      setLoading(false);
+      alert("Error in signup! Please try again later.")
     }
   };
 
@@ -63,8 +57,12 @@ export function SignUpPage() {
         background: "linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%)",
         p: 2,
       }}
-    >
-      <Container maxWidth="sm">
+    >       
+    {loading ? (
+        <DotsSpinner />
+        ) : (
+    <>
+    <Container maxWidth="sm">
         <Paper
           elevation={8}
           sx={{
@@ -138,6 +136,7 @@ export function SignUpPage() {
           </Box>
         </Paper>
       </Container>
+    </>)}
     </Box>
   );
 }
