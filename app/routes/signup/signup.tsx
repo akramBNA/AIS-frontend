@@ -11,6 +11,7 @@ import {
 import authService from "../../services/authentication.services";
 import DotsSpinner from "~/shared/dotsSpinner.shared";
 import CustomAlert from "~/shared/customAlert.shared";
+import SwalService from "~/shared/sweetAlert.shared";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
@@ -39,14 +40,16 @@ export default function Signup() {
           setEmail("");
           setPassword("");
           setLoading(false);
-          setSuccess(`Signup successful! Welcome ${response.data.firstName}`);
+        //   setSuccess(`Signup successful! Welcome ${response.data.firstName}`);
+        SwalService.showSuccess(`Welcome ${response.data.firstName}!`);
         //   navigate("/login");
       } else {
         setLoading(false);
         setError(`Could not sign you up! ${response.message}`);
+        SwalService.showError(`Could not sign you up! ${response.message}`);
       }
     } catch (err: any) {
-        setError("Could not sign you up! Please try again later.");
+        SwalService.showError('Signup failed. Please try again.');
     }
   };
 
@@ -84,7 +87,7 @@ export default function Signup() {
             Sign Up
           </Typography>
 
-          {error && <CustomAlert severity="error" message={error} />}
+          {/* {error && <CustomAlert severity="error" message={error} />}
           {success && (
             <>
                 <CustomAlert severity="success" message={success} />
@@ -98,7 +101,7 @@ export default function Signup() {
                 Go to Login
                 </Button>
             </>
-            )}
+            )} */}
 
           <Box component="form" onSubmit={handleSubmit}>
             <TextField
