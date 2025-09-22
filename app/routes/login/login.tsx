@@ -11,6 +11,9 @@ import {
 } from "@mui/material";
 import authService from "../../services/authentication.services";
 import LoadingSpinner from "~/shared/loadingSpinner.shared";
+import ModernSpinner from "~/shared/modernSpinner.shared";
+import LabeledSpinner from "~/shared/labeledSpinner.shared";
+import DotsSpinner from "~/shared/dotsSpinner.shared";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -55,7 +58,7 @@ export default function Login() {
       }}
     >
          {loading ? (
-        <LoadingSpinner />
+        <DotsSpinner />
       ) : (
         <>
          <Container maxWidth="sm">
