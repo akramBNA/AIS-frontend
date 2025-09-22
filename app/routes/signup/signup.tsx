@@ -1,9 +1,143 @@
-import { useState } from "react";
+// import { useState } from "react";
 
-export default function Signup() {
+// export default function Signup() {
   
 
+//   return (
+//     <div>Signup Page</div>
+//   );
+// }
+import { useState } from "react";
+import {
+  Box,
+  TextField,
+  Button,
+  Typography,
+  Paper,
+  Container,
+  Alert,
+} from "@mui/material";
+import authService from "../../services/authentication.services";
+import { useNavigate } from "react-router-dom";
+
+export function SignUpPage() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    const newUser = { firstName, lastName, email, password };
+
+    try {
+      const response = await authService.signup(newUser);
+      alert(`Signup successful! Welcome ${response.data.firstName}`);
+      
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+
+      navigate("/login");
+    } catch (err: any) {
+      setError(err.message || "Signup failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div>Signup Page</div>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%)",
+        p: 2,
+      }}
+    >
+      <Container maxWidth="sm">
+        <Paper
+          elevation={8}
+          sx={{
+            p: { xs: 4, sm: 6 },
+            borderRadius: 3,
+            backdropFilter: "blur(10px)",
+            backgroundColor: "rgba(255,255,255,0.85)",
+          }}
+        >
+          <Typography
+            variant="h4"
+            align="center"
+            gutterBottom
+            sx={{ fontWeight: "bold", mb: 4 }}
+          >
+            Sign Up
+          </Typography>
+
+          {error && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              {error}
+            </Alert>
+          )}
+
+          <Box component="form" onSubmit={handleSubmit}>
+            <TextField
+              fullWidth
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              margin="normal"
+              required
+            />
+
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              type="submit"
+              sx={{ mt: 3, py: 1.5, fontSize: "1rem", fontWeight: "bold" }}
+              disabled={loading}
+            >
+              {loading ? "Signing up..." : "Sign Up"}
+            </Button>
+          </Box>
+        </Paper>
+      </Container>
+    </Box>
   );
 }
