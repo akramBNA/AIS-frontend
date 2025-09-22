@@ -1,0 +1,58 @@
+import Swal from 'sweetalert2';
+
+const SwalService = {
+  showSuccess: (message: string, title: string = 'Success') => {
+    return Swal.fire({
+      icon: 'success',
+      title: title,
+      text: message,
+      confirmButtonText: 'OK',
+    });
+  },
+
+  showError: (message: string, title: string = 'Error') => {
+    return Swal.fire({
+      icon: 'error',
+      title: title,
+      text: message,
+      confirmButtonText: 'OK',
+    });
+  },
+
+  showWarning: (message: string, title: string = 'Warning') => {
+    return Swal.fire({
+      icon: 'warning',
+      title: title,
+      text: message,
+      confirmButtonText: 'OK',
+    });
+  },
+
+  showConfirmation: (
+    message: string,
+    title: string = 'Warning !'
+  ) => {
+    return Swal.fire({
+      icon: 'warning',
+      title: title,
+      text: message,
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      confirmButtonColor: '#28a745',
+      cancelButtonColor: '#dc3545',
+      reverseButtons: false,
+    });
+  },
+
+  showInfo: (message: string, title: string = 'Information') => {
+    return Swal.fire({
+      icon: 'info',
+      title: title,
+      text: message,
+      confirmButtonText: 'OK',
+    });
+  },
+};
+
+export default SwalService;
