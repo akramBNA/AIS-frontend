@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { submitData } from "../../services/input-page.services";
+import { submitData } from "../../services/simulation-input.services";
 
 export default function SimulationInput() {
   const [formData, setFormData] = useState({
