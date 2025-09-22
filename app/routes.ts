@@ -9,4 +9,5 @@ export default [
   { path: "/login", file: "routes/login/login.tsx" },
   { path: "/signup", file: "routes/signup/signup.tsx" },
   { path: "/mainPage", file: "routes/main-page/main-page.tsx" },
+//   { path: "*", file: "routes/home.tsx" },
 ] satisfies RouteConfig;
