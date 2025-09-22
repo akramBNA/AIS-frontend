@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import authService from "../../services/authentication.services";
 import DotsSpinner from "~/shared/dotsSpinner.shared";
+import CustomAlert from "~/shared/customAlert.shared";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
@@ -19,11 +20,13 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setError("");
+    setSuccess("");
     setLoading(true);
 
     const newUser = { firstName, lastName, email, password };
@@ -36,14 +39,14 @@ export default function Signup() {
           setEmail("");
           setPassword("");
           setLoading(false);
-          alert(`Signup successful! Welcome ${response.data.firstName}`);
-          navigate("/login");
+          setSuccess(`Signup successful! Welcome ${response.data.firstName}`);
+        //   navigate("/login");
       } else {
         setLoading(false);
-        alert("Could not sign you up! Please try again later.")
+        setError(`Could not sign you up! ${response.message}`);
       }
     } catch (err: any) {
-      alert("Error in signup! Please try again later.")
+        setError("Could not sign you up! Please try again later.");
     }
   };
 
@@ -81,11 +84,21 @@ export default function Signup() {
             Sign Up
           </Typography>
 
-          {error && (
-            <Alert severity="error" sx={{ mb: 2 }}>
-              {error}
-            </Alert>
-          )}
+          {error && <CustomAlert severity="error" message={error} />}
+          {success && (
+            <>
+                <CustomAlert severity="success" message={success} />
+                <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                sx={{ mt: 2 }}
+                onClick={() => navigate("/login")}
+                >
+                Go to Login
+                </Button>
+            </>
+            )}
 
           <Box component="form" onSubmit={handleSubmit}>
             <TextField
