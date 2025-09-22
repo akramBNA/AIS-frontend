@@ -12,7 +12,7 @@ import authService from "../../services/authentication.services";
 import DotsSpinner from "~/shared/dotsSpinner.shared";
 import { useNavigate } from "react-router-dom";
 
-export function SignUpPage() {
+export default function Signup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
