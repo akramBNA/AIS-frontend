@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const backendUrl = process.env.REACT_APP_API_URL as string;
+// const backendUrl = process.env.REACT_APP_API_URL as string;
 
-if (!backendUrl) {
-  throw new Error("backendUrl is not defined in your .env file");
-}
+// if (!backendUrl) {
+//   throw new Error("backendUrl is not defined in your .env file");
+// }
 
 export interface LoginData {
   email: string;
