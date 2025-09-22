@@ -6,7 +6,6 @@ import {
   Typography,
   Paper,
   Container,
-  Alert,
   Link,
 } from "@mui/material";
 import authService from "../../services/authentication.services";
@@ -14,6 +13,7 @@ import LoadingSpinner from "~/shared/loadingSpinner.shared";
 import ModernSpinner from "~/shared/modernSpinner.shared";
 import LabeledSpinner from "~/shared/labeledSpinner.shared";
 import DotsSpinner from "~/shared/dotsSpinner.shared";
+import CustomAlert from "~/shared/customAlert.shared";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -80,11 +80,7 @@ export default function Login() {
             Welcome to Agricultural Impact Simulator App
           </Typography>
 
-          {error && (
-            <Alert severity="error" sx={{ mb: 2 }}>
-              {error}
-            </Alert>
-          )}
+          {error && <CustomAlert severity="error" message={error} />}
 
           <Box component="form" onSubmit={handleSubmit}>
             <TextField
