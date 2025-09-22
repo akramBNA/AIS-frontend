@@ -10,6 +10,7 @@ import {
   Link,
 } from "@mui/material";
 import authService from "../../services/authentication.services";
+import LoadingSpinner from "~/shared/loadingSpinner.shared";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -28,16 +29,17 @@ export default function Login() {
     try {
       const response = await authService.login({ email, password });
       if (response.success) {
+        setLoading(false);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data));
         navigate("/mainPage");
       } else {
+        setLoading(false);
         setError("Login failed");
       }
     } catch (err: any) {
-      setError(err.message || "Login failed");
-    } finally {
       setLoading(false);
+      setError(err.message || "Login failed");
     }
   };
 
@@ -52,7 +54,11 @@ export default function Login() {
         p: 2,
       }}
     >
-      <Container maxWidth="sm">
+         {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+         <Container maxWidth="sm">
         <Paper
           elevation={8}
           sx={{
@@ -127,6 +133,7 @@ export default function Login() {
           </Typography>
         </Paper>
       </Container>
+        </>)}
     </Box>
   );
 }
