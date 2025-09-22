@@ -50,7 +50,7 @@ const signup = async (registerData: RegisterData) => {
   }
 };
 
-const logout = async (navigate:any) => {
+const logout = (navigate:any) => {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
   navigate("/login");
