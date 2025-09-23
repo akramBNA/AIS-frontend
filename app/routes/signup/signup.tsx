@@ -139,15 +139,22 @@ export default function Signup() {
               required
             />
 
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              type="submit"
-              sx={{ mt: 3, py: 1.5, fontSize: "1rem", fontWeight: "bold" }}
-              disabled={loading}
-            >
-              {loading ? "Signing up..." : "Sign Up"}
+             <Button 
+              fullWidth 
+              variant="contained" 
+              color="primary" 
+              type="submit" 
+              sx={{ mt: 3, py: 1.5, fontSize: "1rem", fontWeight: "bold" }} 
+              disabled={loading}>
+                Sign Up
+            </Button>
+            <Button 
+              fullWidth 
+              variant="contained" 
+              color="error"  
+              onClick={() => navigate("/login")}
+              sx={{ mt: 3, py: 1.5, fontSize: "1rem", fontWeight: "bold" }} >
+                Go Back
             </Button>
           </Box>
         </Paper>
