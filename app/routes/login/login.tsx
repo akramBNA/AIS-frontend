@@ -49,90 +49,87 @@ export default function Login() {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%)",
         p: 2,
       }}
     >
-         {loading ? (
+      {loading ? (
         <DotsSpinner />
       ) : (
-        <>
-         <Container maxWidth="sm">
-        <Paper
-          elevation={8}
-          sx={{
-            p: { xs: 4, sm: 6 },
-            borderRadius: 3,
-            backdropFilter: "blur(10px)",
-            backgroundColor: "rgba(255,255,255,0.85)",
-          }}
-        >
-          <Typography
-            variant="h4"
-            align="center"
-            gutterBottom
-            sx={{ fontWeight: "bold", mb: 4 }}
+        <Container maxWidth="sm">
+          <Paper
+            elevation={8}
+            sx={{
+              p: { xs: 4, sm: 6 },
+              borderRadius: 3,
+              backdropFilter: "blur(10px)",
+              backgroundColor: "rgba(255,255,255,0.85)",
+            }}
           >
-            Welcome to Agricultural Impact Simulator App
-          </Typography>
-
-          {error && <CustomAlert severity="error" message={error} />}
-
-          <Box component="form" onSubmit={handleSubmit}>
-            <TextField
-              fullWidth
-              placeholder="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              margin="normal"
-              required
-            />
-            <TextField
-              fullWidth
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              margin="normal"
-              required
-            />
-
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              type="submit"
-              disabled={loading}
-              sx={{
-                mt: 3,
-                py: 1.5,
-                fontSize: "1rem",
-                fontWeight: "bold",
-              }}
+            <Typography
+              variant="h4"
+              align="center"
+              gutterBottom
+              sx={{ fontWeight: "bold", mb: 4 }}
             >
-              {loading ? "Logging in..." : "Login"}
-            </Button>
-          </Box>
+              Welcome to Agricultural Impact Simulator App
+            </Typography>
 
-          <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-            Not a member?{" "}
-            <Link
-              component="button"
-              variant="body2"
-              onClick={() => navigate("/signup")}
-              sx={{ fontWeight: "bold" }}
-            >
-              Sign up
-            </Link>
-          </Typography>
-        </Paper>
-      </Container>
-        </>)}
+            {error && <CustomAlert severity="error" message={error} />}
+
+            <Box component="form" onSubmit={handleSubmit}>
+              <TextField
+                fullWidth
+                placeholder="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                margin="normal"
+                required
+              />
+              <TextField
+                fullWidth
+                placeholder="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                margin="normal"
+                required
+              />
+
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                type="submit"
+                disabled={loading}
+                sx={{
+                  mt: 3,
+                  py: 1.5,
+                  fontSize: "1rem",
+                  fontWeight: "bold",
+                }}
+              >
+                {loading ? "Logging in..." : "Login"}
+              </Button>
+            </Box>
+
+            <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+              Not a member?{" "}
+              <Link
+                component="button"
+                variant="body2"
+                onClick={() => navigate("/signup")}
+                sx={{ fontWeight: "bold" }}
+              >
+                Sign up
+              </Link>
+            </Typography>
+          </Paper>
+        </Container>
+      )}
     </Box>
   );
 }

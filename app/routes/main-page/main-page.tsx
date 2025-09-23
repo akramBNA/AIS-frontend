@@ -26,12 +26,7 @@ export default function MainPage() {
   };
 
   return (
-    <div
-      className="flex flex-col items-center justify-center min-h-screen px-4"
-      style={{
-        background: "linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%)",
-      }}
-    >
+    <div className="flex flex-col items-center justify-center px-4 w-full">
       <h1 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center drop-shadow-lg">
         Welcome back
         <span className="block md:inline md:ml-2 text-yellow-200 font-semibold">
@@ -56,9 +51,9 @@ export default function MainPage() {
         </Link>
 
         <button
-            onClick={handleLogout}
-            className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white  font-bold rounded-xl shadow-lg transition-all duration-300 cursor-pointer">
-            Logout
+          onClick={handleLogout}
+          className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl shadow-lg transition-all duration-300 cursor-pointer">
+          Logout
         </button>
       </div>
     </div>
