@@ -47,7 +47,15 @@ export default function Signup() {
   };
 
   return (
-    <>
+    <Box
+    sx={{
+      minHeight: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      background: "linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%)",
+      p: 2,
+    }}>
       {loading ? (
         <DotsSpinner />
       ) : (
@@ -130,6 +138,6 @@ export default function Signup() {
           </Paper>
         </Container>
       )}
-    </>
+    </Box>
   );
 }

@@ -49,12 +49,13 @@ export default function Login() {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        p: 2,
-      }}
-    >
+      minHeight: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      background: "linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%)",
+      p: 2,
+    }}>
       {loading ? (
         <DotsSpinner />
       ) : (
