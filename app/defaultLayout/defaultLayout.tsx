@@ -1,7 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Link, Typography, Box } from "@mui/material";
 import { Outlet } from "react-router";
 
 export default function DefaultLayout() {
+    const current_year = new Date().getFullYear();
+
   return (
     <Box
       sx={{
@@ -17,7 +19,16 @@ export default function DefaultLayout() {
 
       <Box sx={{ py: 2, textAlign: "center" }}>
         <Typography variant="body2" color="white">
-            Created by Deevium team. All rights reserved - © 2025
+            Created by{" "}
+            <Link 
+            href="https://www.deevium.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            underline="hover"
+            sx={{ fontWeight: "bolder", color: "inherit" }} >
+            Deevium
+            </Link>{" "}
+            team. All rights reserved © {current_year}
         </Typography>
       </Box>
     </Box>
