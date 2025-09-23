@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 
 export default function DefaultLayout() {
   return (
@@ -15,9 +15,9 @@ export default function DefaultLayout() {
         <Outlet />
       </Box>
 
-      <Box sx={{ py: 2, textAlign: "center", backgroundColor: "rgba(255,255,255,0.1)" }}>
+      <Box sx={{ py: 2, textAlign: "center" }}>
         <Typography variant="body2" color="white">
-         Created by <span>Deevium</span> team, All rights reserved © 2025.
+            Created by Deevium team. All rights reserved - © 2025
         </Typography>
       </Box>
     </Box>
