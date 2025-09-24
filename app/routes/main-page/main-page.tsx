@@ -20,10 +20,10 @@ export default function MainPage() {
     }
   }, []);
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
+  // const handleLogout = () => {
+  //   localStorage.clear();
+  //   navigate("/login");
+  // };
 
   return (
     <div className="flex flex-col items-center justify-center px-4 w-full">
@@ -50,11 +50,11 @@ export default function MainPage() {
           <p className="text-gray-600">View and manage your previous simulations.</p>
         </Link>
 
-        <button
+        {/* <button
           onClick={handleLogout}
           className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl shadow-lg transition-all duration-300 cursor-pointer">
           Logout
-        </button>
+        </button> */}
       </div>
     </div>
   );
