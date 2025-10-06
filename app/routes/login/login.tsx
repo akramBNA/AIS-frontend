@@ -15,6 +15,7 @@ import LabeledSpinner from "~/shared/labeledSpinner.shared";
 import DotsSpinner from "~/shared/dotsSpinner.shared";
 import CustomAlert from "~/shared/customAlert.shared";
 import { useNavigate } from "react-router-dom";
+import SwalService from "~/shared/sweetAlert.shared";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -38,11 +39,13 @@ export default function Login() {
         navigate("/mainPage");
       } else {
         setLoading(false);
-        setError("Login failed");
+        // setError("Login failed");
+        SwalService.showError("Login failed, chack your credentials!");
       }
     } catch (err: any) {
       setLoading(false);
       setError(err.message || "Login failed");
+      SwalService.showError("Internal error! try again later");
     }
   };
 
