@@ -39,7 +39,7 @@ export default function SimulationsList() {
         if (res.success) {
           setSimulations(res.data);
         } else {
-          SwalService.showError("Failed to load simulations.");
+          // SwalService.showError("Failed to load simulations.");
         }
       } catch (err) {
         SwalService.showError("Error fetching simulations.");
