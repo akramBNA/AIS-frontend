@@ -1,5 +1,15 @@
-import { useState } from "react";
-import { Link, Typography, Box, Avatar, IconButton, Menu, MenuItem, useTheme, useMediaQuery } from "@mui/material";
+import { useState, useEffect } from "react";
+import {
+  Link,
+  Typography,
+  Box,
+  Avatar,
+  IconButton,
+  Menu,
+  MenuItem,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { Outlet, useNavigate } from "react-router";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -10,6 +20,8 @@ export default function DefaultLayout() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [user, setUser] = useState<{ firstName?: string }>({});
+
   const open = Boolean(anchorEl);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -21,12 +33,20 @@ export default function DefaultLayout() {
   };
 
   const handleLogout = () => {
-    localStorage.clear();
+    if (typeof window !== "undefined") {
+      localStorage.clear();
+    }
     navigate("/login");
     handleMenuClose();
   };
 
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  // ✅ Load user only on client side
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+      setUser(storedUser);
+    }
+  }, []);
 
   return (
     <Box
@@ -35,8 +55,8 @@ export default function DefaultLayout() {
         display: "flex",
         flexDirection: "column",
         background: "linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%)",
-    }}>
-
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -50,7 +70,10 @@ export default function DefaultLayout() {
       >
         {!isMobile && (
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Welcome Back,<span className="block md:inline md:ml-2 text-yellow-200 font-semibold">{user?.firstName || "User"}</span>
+            Welcome Back,
+            <span className="block md:inline md:ml-2 text-yellow-200 font-semibold">
+              {user?.firstName || "User"}
+            </span>
           </Typography>
         )}
 
@@ -98,7 +121,15 @@ export default function DefaultLayout() {
         </Box>
       </Box>
 
-      <Box sx={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", p: 2 }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          p: 2,
+        }}
+      >
         <Outlet />
       </Box>
 
