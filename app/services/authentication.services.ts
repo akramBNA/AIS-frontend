@@ -14,13 +14,7 @@ export interface RegisterData {
 
 const login = async (loginData: LoginData) => {
   try {
-    // console.log("backendUrl: ", backendUrl);
-    console.log("login data ==: ", loginData);
-    
-    
-    const response = await axios.post(`http://localhost:3000/api/users/login`, loginData);
-    console.log("response from login service: ", response);
-    
+    const response = await axios.post(`http://localhost:3000/api/users/login`, loginData);    
     return response.data;
   } catch (err: any) {
     if (err.response?.data?.message) {
