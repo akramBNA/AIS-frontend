@@ -30,10 +30,10 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await authService.login({ email, password });
+      const response = await authService.login({ email, password });      
       if (response.success) {
         setLoading(false);
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.token);
         localStorage.setItem("user", JSON.stringify(response.data));
         navigate("/mainPage");
       } else {
