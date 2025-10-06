@@ -12,9 +12,11 @@ export interface RegisterData {
   password: string
 }
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const login = async (loginData: LoginData) => {
   try {
-    const response = await axios.post(`http://localhost:3000/api/users/login`, loginData);    
+    const response = await axios.post(`${API_URL}/users/login`, loginData);    
     return response.data;
   } catch (err: any) {
     if (err.response?.data?.message) {
@@ -27,7 +29,7 @@ const login = async (loginData: LoginData) => {
 
 const signup = async (registerData: RegisterData) => {
   try {
-    const response = await axios.post(`http://localhost:3000/api/users/createUser`, registerData);
+    const response = await axios.post(`${API_URL}/users/createUser`, registerData);
     return response.data;
   } catch (err: any) {
     if (err.response?.data?.message) {
