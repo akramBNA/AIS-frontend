@@ -52,7 +52,7 @@ export default function DefaultLayout() {
       >
         {!isMobile && (
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Welcome Back, {user?.firstName || "User"}
+            Welcome Back,<span className="block md:inline md:ml-2 text-yellow-200 font-semibold">{user?.firstName || "User"}</span>
           </Typography>
         )}
 
