@@ -9,7 +9,6 @@ export default function DefaultLayout() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // Mobile menu state
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -36,9 +35,8 @@ export default function DefaultLayout() {
         display: "flex",
         flexDirection: "column",
         background: "linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%)",
-      }}
-    >
-      {/* Header */}
+    }}>
+
       <Box
         sx={{
           display: "flex",
@@ -100,12 +98,10 @@ export default function DefaultLayout() {
         </Box>
       </Box>
 
-      {/* Main content */}
       <Box sx={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", p: 2 }}>
         <Outlet />
       </Box>
 
-      {/* Footer */}
       <Box sx={{ py: 2, textAlign: "center" }}>
         <Typography variant="body2" color="white">
           Created by{" "}
