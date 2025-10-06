@@ -27,13 +27,13 @@ export default function MainPage() {
 
   return (
     <div className="flex flex-col items-center justify-center px-4 w-full">
-      <h1 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center drop-shadow-lg">
+      {/* <h1 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center drop-shadow-lg">
         Welcome back
         <span className="block md:inline md:ml-2 text-yellow-200 font-semibold">
           {firstName ? firstName : ""}
         </span>{" "}
         👋
-      </h1>
+      </h1> */}
 
       <div className="flex flex-col space-y-6 w-full max-w-md">
         <Link
