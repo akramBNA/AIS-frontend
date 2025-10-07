@@ -1,21 +1,31 @@
-import { Navigate } from "react-router-dom";
-import type { JSX } from "react/jsx-runtime";
+import { Navigate, Outlet } from "react-router-dom";
+import { useEffect, useState, type ReactNode } from "react";
 
 interface ProtectedRouteProps {
-  children: JSX.Element;
+  children?: ReactNode;
 }
 
-const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const token = localStorage.getItem("token");
-  const user = localStorage.getItem("user");
+export default function ProtectedRoute({ children }: ProtectedRouteProps) {
+  const [isClient, setIsClient] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
-  const isAuthenticated = token && user;
+  useEffect(() => {
+    setIsClient(true);
+
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const user = localStorage.getItem("user");
+      setIsAuthenticated(!!token && !!user);
+    }
+  }, []);
+
+  if (!isClient || isAuthenticated === null) {
+    return null;
+  }
 
   if (!isAuthenticated) {
     return <Navigate to="/access-denied" replace />;
   }
 
-  return children;
-};
-
-export default ProtectedRoute;
+  return <>{children ?? <Outlet />}</>;
+}
